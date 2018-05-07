@@ -6,10 +6,12 @@ class LoginPage extends React.Component {
 
     render() {
         return (
-            <div className="container h-100">
-                <div className="row justify-content-md-center h-100">
+            <div className="container">
+                <div className="row justify-content-md-center">
                     <Card>
-                        <LoginForm />
+                        <div className="form_bg">
+                            <LoginForm />
+                        </div>
                     </Card>
                 </div>
             </div>

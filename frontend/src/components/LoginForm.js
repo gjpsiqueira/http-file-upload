@@ -1,10 +1,15 @@
 import React from 'react'
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
+import { doLogin } from '../actions/authActions'
 
-export default class LoginForm extends React.Component {
+class LoginForm extends React.Component {
 
     render() {
         return (
-            <form method="POST">
+            
+            <div>
+                {this.props.userData}
                 <div className="form-group">
                     <label for="usuario">Usuário</label>
                     <input 
@@ -23,11 +28,17 @@ export default class LoginForm extends React.Component {
                         required autofocus/>
                 </div>
                 <div className="form-group no-margin">
-                    <button type="submit" className="btn btn-primary btn-block">
-                        Login
+                    <button type="submit" 
+                        className="btn btn-primary btn-block" 
+                        onClick={() => this.props.doLogin('gustavo','123456')}>
+                        Entrar 
                     </button>
                 </div>                                                                
-            </form>            
+            </div>   
         )
     }
 }
+
+const mapStateToProps = state => ({userData: state.auth.userData})
+const mapDispatchToProps = dispatch => bindActionCreators({doLogin},dispatch)
+export default connect(mapStateToProps, mapDispatchToProps)(LoginForm)
