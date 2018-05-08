@@ -21,7 +21,27 @@
     -->
     <title>HTTP File Upload</title>
     <style>
-    body {background-color: #eee !important}
+    body {
+    margin: 0;
+    padding: 0;
+    font-weight: 400;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 1rem;
+    line-height: 1.58;
+    color: #333;
+    background-color: #f4f4f4;
+}
+
+body:before {
+    height: 50%;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: #128ff2;
+    content: "";
+    z-index: 0;
+}
     .no-border-background {border:none !important; background: none !important;}
     .form_bg {
         background-color:#fff;
@@ -32,13 +52,27 @@
         width: 400px;
         height: 350px;
     }    
+
+    .upload-container {
+      max-width: 900px;
+      margin-left: auto;
+      margin-right: auto;
+      background-color: #fff;
+      box-shadow: 0 1px 11px rgba(0, 0, 0, 0.27);
+      margin-top: 60px;
+      min-height: 400px;
+      position: relative;
+      padding: 20px;
+}
     </style>
   </head>
   <body>
     <noscript>
       You need to enable JavaScript to run this app.
     </noscript>
-    <div id="root"></div>
+    <div class="upload-container">
+      <div id="root"></div>
+    </div>
     <!--
       This HTML file is a template.
       If you open it directly in the browser, you will see an empty page.

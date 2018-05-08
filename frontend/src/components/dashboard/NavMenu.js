@@ -7,7 +7,7 @@ class NavMenu extends React.Component {
 
     render() {
         return (
-            <div className="nav-scroller bg-white box-shadow">
+            <div className="nav-scroller bg-light box-shadow">
             <nav className="nav nav-underline">
               <a className="nav-link active" href="#">Lista de arquivos</a>
               <a className="nav-link" href="" onClick={() => this.props.doLogout()}>Sair</a>

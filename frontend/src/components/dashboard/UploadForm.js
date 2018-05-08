@@ -4,7 +4,7 @@ class UploadForm extends React.Component {
 
     render() {
         return (
-            <div className="container my-3 p-3 bg-white rounded box-shadow w-75 border border-info">
+            <div className="container my-3 p-3 bg-white rounded box-shadow w-75 border border-light">
                 <h6 class="border-bottom border-gray pb-2 mb-0">Envio de arquivos</h6>
                 <form className="mt-4">
                     <div class="form-group">
