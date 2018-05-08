@@ -2,6 +2,8 @@ package com.br.app.httpfileupload.security;
 
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
+import org.json.JSONException;
+import org.json.JSONObject;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 
@@ -24,8 +26,19 @@ public class TokenAuthenticationService {
                      .setExpiration(new Date(System.currentTimeMillis() + EXPIRATION_TIME))
                      .signWith(SignatureAlgorithm.HS512, SECRET)
                      .compact();
+        JSONObject jsonResponse = new JSONObject();
         try {
-            response.getWriter().write(JWT);
+            jsonResponse.put("token", JWT);
+            jsonResponse.put("message", "Login Successful");
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        try {
+
+            response.setContentType("application/json");
+            response.setCharacterEncoding("UTF-8");
+            response.getWriter().write(jsonResponse.toString());
         } catch (IOException e) {
             e.printStackTrace();
         }
