@@ -15,7 +15,7 @@ class LoginPage extends React.Component {
                     </Card>
                 </div>
             </div>
-        );
+        )
     }
 }
 

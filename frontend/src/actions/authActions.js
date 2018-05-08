@@ -9,6 +9,8 @@ export function doLogin(username,password) {
         axios.post('http://localhost:8080/login', {username: username, password: password})
             .then((response) => {
                 console.log(response)
+                localStorage.removeItem( "token" ) 
+                localStorage.setItem( "token", response.data.token );                    
                 dispatch({type: 'IS_AUTHENTICATED', payload: response.data})
             }).catch((err) => {
                 dispatch({type: 'IS_NOT_AUTHENTICATED', payload: null})
