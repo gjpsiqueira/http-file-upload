@@ -7,6 +7,8 @@ import {
   Redirect
 } from 'react-router-dom';
 
+import PageNotFound from './components/PageNotFound'
+
 class App extends Component {
   render() {
     return (
@@ -14,8 +16,9 @@ class App extends Component {
           <div className="container">
             <BrowserRouter>
               <Switch>
-                <Route path='/login' component={LoginPage} />
+                <Route exact path='/login' component={LoginPage} />
                 <Redirect from="/" to="/login" />
+                <Route component={PageNotFound} />
               </Switch>
             </BrowserRouter>
           </div>  
