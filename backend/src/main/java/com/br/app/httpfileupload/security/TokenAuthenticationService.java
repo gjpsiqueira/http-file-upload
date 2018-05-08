@@ -7,6 +7,7 @@ import org.springframework.security.core.Authentication;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 import java.util.Collections;
 import java.util.Date;
 
@@ -23,8 +24,12 @@ public class TokenAuthenticationService {
                      .setExpiration(new Date(System.currentTimeMillis() + EXPIRATION_TIME))
                      .signWith(SignatureAlgorithm.HS512, SECRET)
                      .compact();
+        try {
+            response.getWriter().write(JWT);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
-        response.addHeader(HEADER_STRING, TOKEN_PREFIX  + JWT);
 
     }
 
