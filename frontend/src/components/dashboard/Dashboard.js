@@ -1,5 +1,6 @@
 import React from 'react'
 import UploadForm from './UploadForm'
+import NavMenu from './NavMenu'
 
 class Dashboard extends React.Component {
 
@@ -7,6 +8,7 @@ class Dashboard extends React.Component {
 
         return (
             <div className="dashboard-app">
+                <NavMenu />
                 <UploadForm />
             </div>
         );

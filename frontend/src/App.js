@@ -14,14 +14,14 @@ import Dashboard from './components/dashboard/Dashboard'
 class App extends Component {
   render() {
     if (this.props.isLoggedIn === false) {
-      return (
-              <BrowserRouter>
-                <Switch>
-                  <Route exact={true} path='/' component={LoginPage} />
-                  <Route component={PageNotFound} />
-                </Switch>
-              </BrowserRouter>
-      );
+      // return (
+      //         <BrowserRouter>
+      //           <Switch>
+      //             <Route exact={true} path='/' component={LoginPage} />
+      //             <Route component={PageNotFound} />
+      //           </Switch>
+      //         </BrowserRouter>
+      // );
     }
 
     return <Dashboard />
