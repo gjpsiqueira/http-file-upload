@@ -10,18 +10,21 @@ import {
 import { connect } from 'react-redux'
 import PageNotFound from './components/PageNotFound'
 import Dashboard from './components/dashboard/Dashboard'
+import { checkLoggedIn } from './actions/authActions'
+import { bindActionCreators } from 'redux'
 
 class App extends Component {
   render() {
+    this.props.checkLoggedIn();
     if (this.props.isLoggedIn === false) {
-      // return (
-      //         <BrowserRouter>
-      //           <Switch>
-      //             <Route exact={true} path='/' component={LoginPage} />
-      //             <Route component={PageNotFound} />
-      //           </Switch>
-      //         </BrowserRouter>
-      // );
+      return (
+              <BrowserRouter>
+                <Switch>
+                  <Route exact={true} path='/' component={LoginPage} />
+                  <Route component={PageNotFound} />
+                </Switch>
+              </BrowserRouter>
+      );
     }
 
     return <Dashboard />
@@ -31,9 +34,9 @@ class App extends Component {
 }
 
 const mapStateToProps = state => ({
-  userData: state.auth.userData,
-  failed: state.auth.failed,
   isLoggedIn: state.auth.isLoggedIn
 })
-export default connect(mapStateToProps)(App)
+
+const mapDispatchToProps = dispatch => bindActionCreators({checkLoggedIn},dispatch)
+export default connect(mapStateToProps,mapDispatchToProps)(App)
 

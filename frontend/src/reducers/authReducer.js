@@ -10,6 +10,9 @@ export default function auth(state = {authenticated: false, failed: false, isLog
                 userData: action.payload
             }
         case 'IS_NOT_AUTHENTICATED':
+            return {...state, authenticated: false, failed: false, isLoggedIn: false, userData: null}
+
+        case 'LOGIN_FAILED':
             return {...state, authenticated: false, failed: true, isLoggedIn: false, userData: null}
         default:
             return state
