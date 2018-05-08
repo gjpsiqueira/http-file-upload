@@ -7,24 +7,33 @@ import {
   Redirect
 } from 'react-router-dom';
 
+import { connect } from 'react-redux'
 import PageNotFound from './components/PageNotFound'
+import Dashboard from './components/dashboard/Dashboard'
 
 class App extends Component {
   render() {
-    return (
-      <div className="App">
-          <div className="container">
-            <BrowserRouter>
-              <Switch>
-                <Route exact path='/login' component={LoginPage} />
-                <Redirect from="/" to="/login" />
-                <Route component={PageNotFound} />
-              </Switch>
-            </BrowserRouter>
-          </div>  
-      </div>
-    );
+    if (this.props.isLoggedIn === false) {
+      return (
+              <BrowserRouter>
+                <Switch>
+                  <Route exact={true} path='/' component={LoginPage} />
+                  <Route component={PageNotFound} />
+                </Switch>
+              </BrowserRouter>
+      );
+    }
+
+    return <Dashboard />
+
+
   }
 }
 
-export default App;
+const mapStateToProps = state => ({
+  userData: state.auth.userData,
+  failed: state.auth.failed,
+  isLoggedIn: state.auth.isLoggedIn
+})
+export default connect(mapStateToProps)(App)
+
