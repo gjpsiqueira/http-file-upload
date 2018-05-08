@@ -5,32 +5,55 @@ import { doLogin } from '../actions/authActions'
 
 class LoginForm extends React.Component {
 
+    constructor(props) {
+        super(props)
+        this.state = {usuario: '', password: '', submitted: false}
+
+    }
+
+    handleField(e, field) {
+        this.setState({ [field]: e.target.value } )
+
+    }
+
+    renderStatus() {
+        if(this.props.failed == true) {
+            return (
+                <div className="alert alert-danger" role="alert">
+                     Não foi encontrado nenhum usuário associado. Por favor, tente novamente.
+                </div>
+            )
+        }
+    }
     render() {
         return (
-            
             <div>
-                {this.props.userData}
+                {this.renderStatus()}
                 <div className="form-group">
-                    <label for="usuario">Usuário</label>
+                    <label htmlFor="usuario">Usuário</label>
                     <input 
                         id="usuario" 
                         type="text" 
                         className="form-control" 
                         name="usuario" 
-                        required autofocus/>
+                        required autoFocus
+                        value={this.state.usuario}
+                        onChange={e => this.handleField(e,'usuario')}/>
                 </div>
                 <div className="form-group">
-                    <label for="senha">Senha</label>
+                    <label htmlFor="senha">Senha</label>
                     <input id="senha" 
                         type="password" 
                         className="form-control" 
                         name="email" 
-                        required autofocus/>
+                        required autoFocus
+                        value={this.state.password}
+                        onChange={e => this.handleField(e,'password')}/>
                 </div>
                 <div className="form-group no-margin">
                     <button type="submit" 
                         className="btn btn-primary btn-block" 
-                        onClick={() => this.props.doLogin('gustavo','123456')}>
+                        onClick={() => this.props.doLogin(this.state.usuario,this.state.password)}>
                         Entrar 
                     </button>
                 </div>                                                                
@@ -39,6 +62,9 @@ class LoginForm extends React.Component {
     }
 }
 
-const mapStateToProps = state => ({userData: state.auth.userData})
+const mapStateToProps = state => ({
+    userData: state.auth.userData,
+    failed: state.auth.failed
+})
 const mapDispatchToProps = dispatch => bindActionCreators({doLogin},dispatch)
 export default connect(mapStateToProps, mapDispatchToProps)(LoginForm)
