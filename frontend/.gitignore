@@ -22,3 +22,4 @@ yarn-error.log*
 
 # hide application.properties
 backend/src/main/resources/application.properties
+backend/uploads
